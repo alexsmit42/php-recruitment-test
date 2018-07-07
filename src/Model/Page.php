@@ -9,6 +9,7 @@ class Page
     public $url;
     public $website_id;
     public $last_visit;
+    public $total_visits;
 
     public function __construct()
     {
@@ -47,5 +48,13 @@ class Page
     public function getLastVisit()
     {
         return $this->last_visit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalVisits()
+    {
+        return $this->total_visits;
     }
 }

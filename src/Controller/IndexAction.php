@@ -24,6 +24,7 @@ class IndexAction
         $this->websiteManager = $websiteManager;
         if (isset($_SESSION['login'])) {
             $this->user = $userManager->getByLogin($_SESSION['login']);
+            $this->userInfo = $userManager->getUserInfo($this->user);
         }
     }
 
@@ -32,6 +33,22 @@ class IndexAction
         if($this->user) {
             return $this->websiteManager->getAllByUser($this->user);
         } 
+        return [];
+    }
+
+    protected function getUserInfo()
+    {
+        if($this->user) {
+            return $this->userManager->getUserInfo($this->user);
+        }
+        return [];
+    }
+
+    protected function getServers()
+    {
+        if($this->user) {
+            return $this->serverManager->getAllByUser($this->user);
+        }
         return [];
     }
 

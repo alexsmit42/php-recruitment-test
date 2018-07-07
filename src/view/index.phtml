@@ -48,6 +48,20 @@
                 </form>
             </div>
 
+            <div class="padded">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Total pages</th>
+                        <th>Last visited</th>
+                        <th>Most visited</th>
+                    </tr>
+                    <tr>
+                        <td><?= $this->userInfo['total'] ?></td>
+                        <td><?= $this->userInfo['last_visited'] ?></td>
+                        <td><?= $this->userInfo['most_visited'] ?></td>
+                    </tr>
+                </table>
+            </div>
 
             <div class="padded">
                 <table class="table table-striped">

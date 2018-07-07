@@ -53,4 +53,48 @@ class UserManager
     {
         return hash('sha512', $password . $salt);
     }
+
+    public function getUserInfo(User $user) {
+        $userId = $user->getUserId();
+
+        $query = $this->database->prepare('
+            SELECT
+              w.hostname,
+              p.url,
+              p.last_visit,
+              p.total_visits
+            FROM
+              pages p
+              JOIN websites w USING(website_id)
+            WHERE
+              w.user_id = :user_id
+            ORDER BY p.last_visit DESC
+        ');
+        $query->bindParam(':user_id', $userId, \PDO::PARAM_INT);
+        $query->execute();
+
+        $totalPages = $query->rowCount();
+
+        $userInfo = [
+            'total' => $totalPages,
+            'last_visited' => '',
+            'most_visited' => ''
+        ];
+
+        if ($totalPages) {
+            $pages = $query->fetchAll(\PDO::FETCH_ASSOC);
+            $userInfo['last_visited'] = $this->getFullUrl($pages[0]) . " ({$pages[0]['last_visit']})";
+
+            usort($pages, function($a, $b) {
+                return $a['total_visits'] < $b['total_visits'];
+            });
+            $userInfo['most_visited'] = $this->getFullUrl($pages[0]) . " ({$pages[0]['total_visits']})";
+        }
+
+        return $userInfo;
+    }
+
+    private function getFullUrl(array $page) {
+        return "http://{$page['hostname']}/{$page['url']}";
+    }
 }

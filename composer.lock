@@ -4,9 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2f3b7ee579dcc892ab08fe9207d2cb83",
-    "content-hash": "f266a9777fe2f1720e53a553d8302324",
+    "hash": "29dd9f020d3be99d6cd74294c3fd977f",
+    "content-hash": "2729a32a3a83b4f4dee7b1d44cb442a7",
     "packages": [
+        {
+            "name": "alexsmith42/sitemap",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexsmit42/sitemap.git",
+                "reference": "3bc0492e2d4344a685a1113066d7265dc321398f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexsmit42/sitemap/zipball/3bc0492e2d4344a685a1113066d7265dc321398f",
+                "reference": "3bc0492e2d4344a685a1113066d7265dc321398f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "AlexSmith\\SitemapParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Smith",
+                    "email": "avalk87@gmail.com"
+                }
+            ],
+            "description": "Sitemap parser",
+            "homepage": "https://github.com/alexsmith42/sitemap",
+            "keywords": [
+                "Sitemap",
+                "composer",
+                "package"
+            ],
+            "time": "2018-07-07 08:48:47"
+        },
         {
             "name": "jeremeamia/SuperClosure",
             "version": "2.4.0",

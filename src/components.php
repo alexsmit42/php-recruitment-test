@@ -1,6 +1,7 @@
 <?php
 
 use Snowdog\DevTest\Command\MigrateCommand;
+use Snowdog\DevTest\Command\SitemapCommand;
 use Snowdog\DevTest\Command\WarmCommand;
 use Snowdog\DevTest\Component\CommandRepository;
 use Snowdog\DevTest\Component\Menu;
@@ -31,6 +32,7 @@ RouteRepository::registerRoute('POST', '/page', CreatePageAction::class, 'execut
 
 CommandRepository::registerCommand('migrate_db', MigrateCommand::class);
 CommandRepository::registerCommand('warm [id]', WarmCommand::class);
+CommandRepository::registerCommand('sitemap [login] [name] [file]', SitemapCommand::class);
 
 Menu::register(LoginMenu::class, 200);
 Menu::register(RegisterMenu::class, 250);

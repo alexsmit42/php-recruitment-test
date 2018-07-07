@@ -33,7 +33,7 @@
             <p class="bg-success">Hello <?= $this->user->getDisplayName() ?>!</p>
 
             <div class="padded">
-                <form class="form-inline" method="post" action="/website">
+                <form class="form-inline" method="post" action="/website" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleInputName2">Name</label>
                         <input type="text" name="name" class="form-control" id="exampleInputName2"
@@ -43,6 +43,10 @@
                         <label for="exampleInputUrl2">Hostname</label>
                         <input type="text" name="hostname" class="form-control" id="exampleInputUrl2"
                                placeholder="website.org">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUrl2">Sitemap file</label>
+                        <input type="file" name="sitemap" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-primary">Add Website</button>
                 </form>

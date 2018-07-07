@@ -2,7 +2,7 @@
 
 namespace Snowdog\DevTest\Component;
 
-use DI\InvokerInterface;
+use Invoker\InvokerInterface;
 
 class Menu
 {

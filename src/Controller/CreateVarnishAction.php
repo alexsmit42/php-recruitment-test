@@ -22,7 +22,18 @@ class CreateVarnishAction
     {
         $ip = $_POST['ip'];
 
-        // TODO - add module logic here
+        if(!empty($ip)) {
+            if (isset($_SESSION['login'])) {
+                $user = $this->userManager->getByLogin($_SESSION['login']);
+                if ($user) {
+                    if ($this->varnishManager->create($user, $ip)) {
+                        $_SESSION['flash'] = 'Varnish ' . $ip . ' added!';
+                    }
+                }
+            }
+        } else {
+            $_SESSION['flash'] = 'IP cannot be empty!';
+        }
 
         header('Location: /varnish');
     }

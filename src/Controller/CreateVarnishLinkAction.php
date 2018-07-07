@@ -6,6 +6,7 @@ use Snowdog\DevTest\Model\UserManager;
 use Snowdog\DevTest\Model\Varnish;
 use Snowdog\DevTest\Model\VarnishManager;
 use Snowdog\DevTest\Model\Website;
+use Snowdog\DevTest\Model\WebsiteManager;
 
 class CreateVarnishLinkAction
 {
@@ -17,8 +18,12 @@ class CreateVarnishLinkAction
      * @var VarnishManager
      */
     private $varnishManager;
+    /**
+     * @var WebsiteManager
+     */
+    private $websiteManager;
 
-    public function __construct(UserManager $userManager, VarnishManager $varnishManager)
+    public function __construct(UserManager $userManager, WebsiteManager $websiteManager, VarnishManager $varnishManager)
     {
         $this->userManager = $userManager;
         $this->varnishManager = $varnishManager;
@@ -26,6 +31,22 @@ class CreateVarnishLinkAction
 
     public function execute()
     {
-        // TODO: add module logic here
+        $websiteId = $_POST['website'];
+        $varnishId = $_POST['varnish'];
+        $link = $_POST['link'];
+
+        if (isset($_SESSION['login'])) {
+            $user = $this->userManager->getByLogin($_SESSION['login']);
+            $varnish = $this->varnishManager->getById($varnishId);
+            $website = $this->websiteManager->getById($websiteId);
+
+            if ($website->getUserId() == $user->getUserId() && $varnish->getUserId() == $user->getUserId()) {
+                if (intval($link)) {
+                    $this->varnishManager->link($varnish, $website);
+                } else {
+                    $this->varnishManager->unlink($varnish, $website);
+                }
+            }
+        }
     }
 }

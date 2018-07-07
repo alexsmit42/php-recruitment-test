@@ -5,10 +5,16 @@ namespace Snowdog\DevTest\Controller;
 use Snowdog\DevTest\Model\PageManager;
 use Snowdog\DevTest\Model\UserManager;
 use Snowdog\DevTest\Model\Website;
+use Snowdog\DevTest\Model\VarnishManager;
 use Snowdog\DevTest\Model\WebsiteManager;
 
 class WebsiteAction
 {
+
+    /**
+     * @var VarnishManager
+     */
+    private $varnishManager;
 
     /**
      * @var WebsiteManager
@@ -27,8 +33,15 @@ class WebsiteAction
      */
     private $website;
 
-    public function __construct(UserManager $userManager, WebsiteManager $websiteManager, PageManager $pageManager)
+    /**
+     * @var User
+     */
+    private $user;
+
+
+    public function __construct(UserManager $userManager, VarnishManager $varnishManager, WebsiteManager $websiteManager, PageManager $pageManager)
     {
+        $this->varnishManager = $varnishManager;
         $this->websiteManager = $websiteManager;
         $this->pageManager = $pageManager;
         $this->userManager = $userManager;
@@ -43,6 +56,7 @@ class WebsiteAction
 
             if ($website->getUserId() == $user->getUserId()) {
                 $this->website = $website;
+                $this->user = $user;
             }
         }
 

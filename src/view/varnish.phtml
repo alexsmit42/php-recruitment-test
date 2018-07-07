@@ -57,7 +57,13 @@
                     </tr>
                     <?php foreach ($this->getWebsites() as $website): /** @var \Snowdog\DevTest\Model\Website $website */ ?>
                         <tr>
-                            <td><input type="checkbox" <?= in_array($website->getWebsiteId(), $websiteIds) ? 'checked="checked"' : '' ?>/></td>
+                            <td><input
+                                        class="update-varnish"
+                                        data-varnish="<?= $varnish->getVarnishId() ?>"
+                                        data-website="<?= $website->getWebsiteId() ?>"
+                                        type="checkbox"
+                                        <?= in_array($website->getWebsiteId(), $websiteIds) ? 'checked="checked"' : '' ?>/>
+                            </td>
                             <td><?= $website->getName() ?></td>
                             <td><?= $website->getHostname() ?></td>
                         </tr>
@@ -70,6 +76,28 @@
 
 </div><!-- /.container -->
 
+<script>
+    let varnishElements = document.getElementsByClassName("update-varnish");
+
+    Array.from(varnishElements).forEach(element => {
+        element.addEventListener('click', function() {
+            let website = this.getAttribute('data-website');
+            let varnish = this.getAttribute('data-varnish');
+
+            let link = +this.checked;
+
+            fetch('/varnish/link', {
+                    method: 'post',
+                    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                    body: `website=${website}&varnish=${varnish}&link=${link}`,
+                    credentials: 'same-origin',
+                    mode: 'same-origin'
+                }).then(res => {
+                    console.log(res);
+                });
+        });
+    });
+</script>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 namespace Snowdog\DevTest\Core;
 
-use DI\InvokerInterface;
+use Invoker\InvokerInterface;
 use Snowdog\DevTest\Component\Migrations;
 
 class Migration

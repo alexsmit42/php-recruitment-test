@@ -27,6 +27,14 @@ class PageManager
         return $query->fetchAll(\PDO::FETCH_CLASS, Page::class);
     }
 
+    public function visit(Page $page) {
+        $pageId = $page->getPageId();
+        /** @var \PDOStatement $query */
+        $statement = $this->database->prepare('UPDATE pages SET last_visit = NOW() WHERE page_id = :page_id');
+        $statement->bindParam(':page_id', $pageId, \PDO::PARAM_INT);
+        $statement->execute();
+    }
+
     public function create(Website $website, $url)
     {
         $websiteId = $website->getWebsiteId();

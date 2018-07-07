@@ -7,6 +7,10 @@ class LoginFormAction
 
     public function execute()
     {
-        require __DIR__ . '/../view/login.phtml';
+        if ($_SESSION['login']) {
+            require __DIR__ . '/../view/403.phtml';
+        } else {
+            require __DIR__ . '/../view/login.phtml';
+        }
     }
 }

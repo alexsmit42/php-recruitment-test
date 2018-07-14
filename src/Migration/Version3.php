@@ -7,7 +7,7 @@ use Snowdog\DevTest\Model\VarnishManager;
 use Snowdog\DevTest\Model\WebsiteManager;
 use Snowdog\DevTest\Model\UserManager;
 
-class Version5
+class Version3
 {
     /**
      * @var Database|\PDO

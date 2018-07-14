@@ -31,7 +31,7 @@ RouteRepository::registerRoute('POST', '/website', CreateWebsiteAction::class, '
 RouteRepository::registerRoute('GET', '/login', LoginFormAction::class, 'execute');
 RouteRepository::registerRoute('POST', '/register', RegisterAction::class, 'execute');
 RouteRepository::registerRoute('GET', '/', IndexAction::class, 'execute');
-Migrations::registerComponentMigration('Snowdog\\DevTest', 5);
+Migrations::registerComponentMigration('Snowdog\\DevTest', 3);
 RouteRepository::registerRoute('POST', '/page', CreatePageAction::class, 'execute');
 CommandRepository::registerCommand('warm [id]', WarmCommand::class);
 RouteRepository::registerRoute('GET', '/logout', LogoutAction::class, 'execute');

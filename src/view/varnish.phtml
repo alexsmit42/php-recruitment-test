@@ -93,7 +93,9 @@
                     credentials: 'same-origin',
                     mode: 'same-origin'
                 }).then(res => {
-                    console.log(res);
+                    if (res.status === 200) {
+                        console.log('Ok');
+                    }
                 });
         });
     });

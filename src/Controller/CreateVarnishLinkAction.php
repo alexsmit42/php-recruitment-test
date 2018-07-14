@@ -27,6 +27,7 @@ class CreateVarnishLinkAction
     {
         $this->userManager = $userManager;
         $this->varnishManager = $varnishManager;
+        $this->websiteManager = $websiteManager;
     }
 
     public function execute()
